@@ -1,0 +1,196 @@
+/* ==== Layout container ==== */
+.checkout-page{
+    max-width: 1160px;
+    margin: 24px auto 60px;
+    padding: 0 16px;
+    color: #EDEDED;
+    --card-bg: #121212;
+    --card-stroke: #1f1f1f;
+    --muted: #9aa0a6;
+    --row-gap: 10px;
+    --accent: #ff5678;     /* place order button */
+    --accent-2: #ff7b95;
+    --grad-a: #6ee7f9;     /* pay option gradient */
+    --grad-b: #a78bfa;
+    --grad-c: #f472b6;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+  }
+  @media (max-width: 960px){
+    .grid{ grid-template-columns: 1fr; }
+  }
+  
+  /* ==== Card ==== */
+  .card{
+    background: var(--card-bg);
+    border: 1px solid var(--card-stroke);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .p-4{ padding: 20px; }
+  
+  .text-xl{ font-size: 28px; font-weight: 800; letter-spacing: .2px; }
+  .text-lg{ font-size: 20px; font-weight: 700; }
+  .mb-4{ margin-bottom: 16px; }
+  .mb-3{ margin-bottom: 12px; }
+  .mt-3{ margin-top: 12px; }
+  .mt-6{ margin-top: 24px; }
+  .mb-2{ margin-bottom: 8px; }
+  
+  /* ==== Inputs ==== */
+  .card input[type="text"],
+  .card input[type="tel"],
+  .card input[placeholder],
+  .card input:not([type="radio"]){
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    background: #0C0C0C;
+    border: 1px solid #232323;
+    border-radius: 10px;
+    color: #EDEDED;
+    outline: none;
+    transition: border .15s ease, box-shadow .15s ease;
+  }
+  .card input:focus{
+    border-color: #3a3a3a;
+    box-shadow: 0 0 0 3px rgba(255, 86, 120, .15);
+  }
+  
+  .card hr{
+    border: 0;
+    height: 1px;
+    background: #222;
+    margin: 10px 0;
+  }
+  
+  /* ==== Payment options ==== */
+  .stack{ display: grid; gap: 10px; }
+  
+  .pay-opt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 14px;
+    background: #0e0e0e;
+    border: 1px solid #202020;
+    border-radius: 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .08s ease, border .15s ease, background .15s ease;
+  }
+  .pay-opt:hover{ border-color: #2a2a2a; }
+  .pay-opt input[type="radio"]{ accent-color: #ff6b86; transform: scale(1.05); }
+  
+  .pay-opt.active{
+    background: linear-gradient(145deg, rgba(110,231,249,.12), rgba(167,139,250,.12) 55%, rgba(244,114,182,.10));
+    border-color: #2b2b2b;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 6px 18px rgba(0,0,0,.25);
+  }
+  
+  /* ==== Summary rows ==== */
+  .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    font-size: 14px;
+    color: #d8d8d8;
+  }
+  .row span:first-child{ color: var(--muted); }
+  .row strong{ font-size: 16px; color: #fff; }
+  
+  /* ==== Place Order button ==== */
+  .place-order-btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    font-weight: 700;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    border: none;
+    color: #111;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .place-order-btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(255, 86, 120, .25); }
+  .place-order-btn:active{ transform: translateY(0); }
+  .place-order-btn:disabled{
+    cursor: not-allowed;
+    filter: grayscale(.35) opacity(.85);
+    box-shadow: none;
+  }
+  
+  /* ==== PayPal block spacing ==== */
+  #paypal-buttons-container{
+    margin-top: 8px;
+    background: #0c0c0c;
+    border: 1px dashed #262626;
+    border-radius: 12px;
+    padding: 10px;
+  }
+  
+  /* ==== Small helpers (optional) ==== */
+  .checkout-page .hint{
+    color: var(--muted);
+    font-size: 12px;
+  }
+  
+  /* Tighten the right card so content aligns nicely with button */
+  .card.p-4 > h3 { margin-top: 2px; }
+  
+  /* Inputs grid inside address */
+  .card .grid{ gap: 12px; }
+  
+
+  /* ---- Toast (error pop) ---- */
+.toast{
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 380px;
+    padding: 14px 14px 14px 12px;
+    border-radius: 14px;
+    border: 1px solid #2a1f23;
+    background: #140c0e;
+    box-shadow: 0 18px 48px rgba(0,0,0,.45);
+    color: #f8dfe5;
+  }
+  .toast.error{
+    border-color: #4a222b;
+    background: linear-gradient(180deg, rgba(255,86,120,.10), rgba(20,12,14,1));
+  }
+  .toast-dot{
+    flex: none;
+    width: 10px; height: 10px;
+    margin-top: 6px;
+    border-radius: 999px;
+    background: #ff6b86;
+    box-shadow: 0 0 0 6px rgba(255,107,134,.15);
+  }
+  .toast-body{ display: grid; gap: 4px; }
+  .toast-title{ font-weight: 800; font-size: 14px; color: #ffd1db; }
+  .toast-msg{ font-size: 13px; color: #ffdfe6; line-height: 1.35; }
+  .toast-close{
+    margin-left: auto;
+    font-size: 14px;
+    line-height: 1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+    color: #ffb7c4;
+  }
+  .toast-close:hover{ color: #ffd1db; }
+  
